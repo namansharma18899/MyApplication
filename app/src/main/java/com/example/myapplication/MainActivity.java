@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intero=new Intent(getApplicationContext(),Activity1.class);
                 intero.putExtra("Extras",s);
                 startActivity(intero);
+                //war
             }
         });
     }
