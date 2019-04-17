@@ -15,8 +15,8 @@ public class Activity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_1);
-        TextView tv2=(TextView) findViewById(R.id.tv2);
-        TextView tv=(TextView) findViewById(R.id.tv);
+      //  TextView tv2=(TextView) findViewById(R.id.tv2);
+      //  TextView tv=(TextView) findViewById(R.id.tv);
       /* if(getIntent().hasExtra("Extras")) {
                 //  String g=(getIntent().getExtras().getString("com.example.myapplication.Extras"));
                 Intent iin= getIntent();

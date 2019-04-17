@@ -38,7 +38,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
-        if(getIntent().hasExtra("Extras")) {
+       /* if(getIntent().hasExtra("Extras")) {
             //  String g=(getIntent().getExtras().getString("com.example.myapplication.Extras"));
             Intent iin= getIntent();
             Bundle b = iin.getExtras();
@@ -48,7 +48,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                 String st= (String) b.getString("Extras");
                 // double d = (double) b.getDouble("Extras");
             }
-        }
+        } */
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         // Below is a default permission check to check user permissions
