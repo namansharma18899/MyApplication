@@ -2,4 +2,8 @@
     <string name="app_name">My Application</string>
     <string name="button">Button</string>
     <string name="title_activity_mapart">Map</string>
+    <string name="send_location">Send Location</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="get_directions">Get Directions</string>
 </resources>

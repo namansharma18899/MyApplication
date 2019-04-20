@@ -11,11 +11,16 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -28,7 +33,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private LocationManager locationManager;
-
+    private  MarkerOptions searchmarker = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +43,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
-       /* if(getIntent().hasExtra("Extras")) {
+        if(getIntent().hasExtra("Extras")) {
             //  String g=(getIntent().getExtras().getString("com.example.myapplication.Extras"));
             Intent iin= getIntent();
             Bundle b = iin.getExtras();
@@ -48,7 +53,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                 String st= (String) b.getString("Extras");
                 // double d = (double) b.getDouble("Extras");
             }
-        } */
+        }
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         // Below is a default permission check to check user permissions
@@ -146,6 +151,44 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    public void onclick(View v) {
+        switch (v.getId()) {
+            case R.id.place_autocomplete_search_button: {
+                EditText searchbox = (EditText) findViewById(R.id.searchbox);
+                String address = searchbox.getText().toString();
+                List<Address> addressList = null;
+                if(!TextUtils.isEmpty(address))
+                {
+                    Geocoder geocoder  = new Geocoder(this);
+                    try {
+                        addressList = geocoder.getFromLocationName(address, 8); // Here we use the Geocoder propery to det the location name of upto 8 places ;>
+                        if(addressList!= null)
+                        {
+                            for(int i=0; i<=addressList.size();i++)
+                            {
+                                Address searchadd = addressList.get(i);
+                                LatLng searchlatLng=  new LatLng(searchadd.getLatitude(),searchadd.getLongitude()); // Describing the latitude and longitue of each result
+                                searchmarker.position(searchlatLng);
+                                searchmarker.title(String.valueOf(searchadd));
+                                searchmarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+                                mMap.addMarker(searchmarker);
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(this, "Put a Valid Location", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(this, "Firstly Put a Location", Toast.LENGTH_SHORT).show();
+                }break;
+            }
+        }
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
