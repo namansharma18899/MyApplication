@@ -23,6 +23,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +36,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private LocationManager locationManager;
     private  MarkerOptions searchmarker = null;
+    private LatLng userlatlng = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,10 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                 String st= (String) b.getString("Extras");
                 // double d = (double) b.getDouble("Extras");
             }
+        }
+        else if(getIntent().hasExtra("goto")){
+            setContentView(R.layout.go_to);
+
         }
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -74,6 +81,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();  // Thus now we have both land and long
                     LatLng latLng = new LatLng(latitude,longitude);
+                    userlatlng = latLng;
                     Geocoder geocoder = new Geocoder(getApplicationContext());
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude,longitude,1);
@@ -110,6 +118,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();  // Thus now we have both land and long
                     LatLng latLng = new LatLng(latitude,longitude);
+                    userlatlng = latLng;
                     Geocoder geocoder = new Geocoder(getApplicationContext());
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude,longitude,1);
@@ -167,11 +176,12 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                             for(int i=0; i<=addressList.size();i++)
                             {
                                 Address searchadd = addressList.get(i);
-                                LatLng searchlatLng=  new LatLng(searchadd.getLatitude(),searchadd.getLongitude()); // Describing the latitude and longitue of each result
+                                LatLng searchlatLng =  new LatLng(searchadd.getLatitude(),searchadd.getLongitude()); // Describing the latitude and longitue of each result
                                 searchmarker.position(searchlatLng);
                                 searchmarker.title(String.valueOf(searchadd));
                                 searchmarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
                                 mMap.addMarker(searchmarker);
+                                Polyline polyline = mMap.addPolyline(new PolylineOptions().add(searchlatLng,userlatlng));
                             }
                         }
                         else
@@ -187,6 +197,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                     Toast.makeText(this, "Firstly Put a Location", Toast.LENGTH_SHORT).show();
                 }break;
             }
+
         }
     }
     @Override

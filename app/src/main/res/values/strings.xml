@@ -6,4 +6,8 @@
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
     <string name="get_directions">Get Directions</string>
+    <string name="imagelogo">imagelogo</string>
+    <string name="close" />
+    <string name="open" />
+    <string name="go_to">GO TO</string>
 </resources>

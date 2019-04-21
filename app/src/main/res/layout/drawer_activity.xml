@@ -10,26 +10,18 @@
     tools:context="com.example.myapplication.MainActivity"
     tools:openDrawer="start"
     >
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragment_container">
-
-        <Button
-            android:id="@+id/buta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="199dp"
-            android:layout_marginStart="130dp"
-            android:background="@color/colorAccent"
-            android:text="@string/send_location" />
-    </FrameLayout>
-    <android.support.design.widget.NavigationView
+    <include
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_view"
         app:headerLayout="@layout/nav_header"
+        android:fitsSystemWindows="true"
         app:menu="@menu/drawer_menu"
         />
 </android.support.v4.widget.DrawerLayout>

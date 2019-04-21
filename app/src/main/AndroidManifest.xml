@@ -34,7 +34,7 @@
             android:label="@string/title_activity_mapart"></activity>
         <activity android:name=".Activity1" />
         <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.Noactionbar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
