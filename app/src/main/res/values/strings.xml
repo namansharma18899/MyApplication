@@ -10,4 +10,6 @@
     <string name="close" />
     <string name="open" />
     <string name="go_to">GO TO</string>
+    <string name="nearby_places">Nearby Places</string>
+    <string name="current_location">Current Location</string>
 </resources>

@@ -59,7 +59,6 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
         }
         else if(getIntent().hasExtra("goto")){
             setContentView(R.layout.go_to);
-
         }
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -88,7 +87,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                         String str= addressList.get(0).getLocality()+" , ";
                         str+=addressList.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(latLng).title(str));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,2.3f));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,100f));
                     }
                     catch (IOException e) {
                         e.printStackTrace();
@@ -125,7 +124,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                         String str= addressList.get(0).getLocality()+" , ";
                         str+=addressList.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(latLng).title(str));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,100.2f));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10.2f));
                     }
                     catch (IOException e) {
                         e.printStackTrace();
@@ -162,7 +161,7 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
      */
     public void onclick(View v) {
         switch (v.getId()) {
-            case R.id.place_autocomplete_search_button: {
+            case R.id.searchbtn: {
                 EditText searchbox = (EditText) findViewById(R.id.searchbox);
                 String address = searchbox.getText().toString();
                 List<Address> addressList = null;
@@ -170,18 +169,20 @@ public class mapart extends FragmentActivity implements OnMapReadyCallback {
                 {
                     Geocoder geocoder  = new Geocoder(this);
                     try {
-                        addressList = geocoder.getFromLocationName(address, 8); // Here we use the Geocoder propery to det the location name of upto 8 places ;>
+                        addressList = geocoder.getFromLocationName(address, 3); // Here we use the Geocoder propery to det the location name of upto 8 places ;>
                         if(addressList!= null)
                         {
                             for(int i=0; i<=addressList.size();i++)
                             {
                                 Address searchadd = addressList.get(i);
                                 LatLng searchlatLng =  new LatLng(searchadd.getLatitude(),searchadd.getLongitude()); // Describing the latitude and longitue of each result
-                                searchmarker.position(searchlatLng);
+                               /* searchmarker.position(searchlatLng);
                                 searchmarker.title(String.valueOf(searchadd));
                                 searchmarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
-                                mMap.addMarker(searchmarker);
-                                Polyline polyline = mMap.addPolyline(new PolylineOptions().add(searchlatLng,userlatlng));
+                                mMap.addMarker(searchmarker);  */
+                                mMap.addMarker(new MarkerOptions().position(searchlatLng).title(address));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(searchlatLng,10.2f));
+                              //  Polyline polyline = mMap.addPolyline(new PolylineOptions().add(searchlatLng,userlatlng));
                             }
                         }
                         else

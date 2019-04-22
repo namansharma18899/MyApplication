@@ -6,21 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.myapplication.MainActivity"
-    tools:showIn="@layout/app_bar"
+    android:background="@drawable/blue_background"
     >
-    <!--
+
     <ImageView
         android:id="@+id/applogo"
-        android:layout_width="146dp"
-        android:layout_height="124dp"
+        android:layout_width="245dp"
+        android:layout_height="167dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="106dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="78dp"
         android:contentDescription="@string/imagelogo"
-        android:src="@drawable/pika" /> -->
+        android:src="@drawable/ic_school" />
     <!--
        <TextView
            android:id="@+id/appname"
@@ -37,32 +37,31 @@
 
     <Button
         android:id="@+id/buta"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="82dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="171dp"
-        android:layout_marginTop="207dp"
-        android:layout_marginEnd="139dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="461dp"
+        android:layout_marginEnd="246dp"
         android:background="@color/colorPrimaryDark"
-        android:text="@string/send_location"
+        android:text="@string/current_location"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/bubble"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buta"
+        android:layout_width="110dp"
+        android:layout_height="82dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="169dp"
-        android:layout_marginTop="118dp"
-        android:layout_marginEnd="154dp"
-        android:layout_marginBottom="313dp"
+        android:layout_marginStart="241dp"
+        android:layout_marginTop="456dp"
+        android:layout_marginEnd="48dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/go_to"
         android:textColor="@android:color/white"
         android:visibility="visible" />
+
 </RelativeLayout>
